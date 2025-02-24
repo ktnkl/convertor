@@ -1,0 +1,7 @@
+.select {
+  border: 1px #333 solid;
+  border-radius: 12px 12px 0 0;
+  padding: 1rem;
+  background-color: transparent;
+  width: 100%;
+}

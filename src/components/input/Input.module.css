@@ -1,0 +1,27 @@
+.input {
+  height: 10rem;
+  border: 1px #333 solid;
+  border-radius: 0 0 12px 12px;
+  font-size: 2rem;
+  width: 100%;
+}
+
+.input::placeholder {
+  white-space: pre-line;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@media (min-width: 1200px) {
+  .input {
+    height: 20rem;
+  }
+}

@@ -1,0 +1,15 @@
+.footer {
+  padding: 1rem;
+  padding-inline: 1.5rem;
+  background-color: #5a30f4;
+  color: #fff
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.item {
+  padding: .5rem;
+}

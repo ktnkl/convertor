@@ -1,0 +1,26 @@
+.form {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+  padding: 0 1rem;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  max-width: 500px;
+  min-width: 300px;
+}
+
+@media (min-width: 1200px) {
+  .form {
+    flex-direction: row;
+    column-gap: 80px;
+  }
+}
+
+
+

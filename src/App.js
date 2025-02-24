@@ -1,23 +1,79 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/header/Header"
+import Footer from "./components/footer/Footer"
+import getRates from "./getRates"
+import "./styles/App.css"
+import CurrencyForm from "./components/CurrencyForm/CurrencyForm"
+import { useState } from "react"
+import fx from './money.js'
 
 function App() {
+  const [userChoise, setUserChoice] = useState({
+    valueFrom: 0,
+    selectFrom: 'RUB',
+    selectTo: 'USD'
+  })
+
+  const rates = JSON.parse(localStorage.getItem("rates"))
+  const ratesMin = JSON.parse(localStorage.getItem("rates-min"))
+  
+  if (rates && ratesMin) {
+    const oldDate = new Date(rates.Date)
+    const now = new Date()
+    if (now - oldDate >= 86400000) {
+      console.log('time to get new JSON')
+      getRates()
+    } else {
+      console.log("rates are fresh")
+    }
+  } else {
+    getRates()
+    console.log("need to get rates")
+  }
+
+  const valute = []
+  for (let i in rates.Valute) {
+    valute.push(rates.Valute[i])
+  }
+  valute.push({
+    ID: "customID",
+    NumCode: "customNumCode",
+    CharCode: "RUB",
+    Nominal: 1,
+    Name: "Российских рублей",
+    Value: 1,
+    Previous: 1
+  })
+
+  fx.base = "RUB"
+  fx.rates = {...ratesMin.rates, RUB: 1}
+  
+  function getInputTo() {
+    let num
+    try {
+      num = fx(userChoise.valueFrom)
+      .from(userChoise.selectFrom)
+      .to(userChoise.selectTo);
+    } catch (error) {
+      console.log(error + "function error")
+    }
+    return num
+  }
+  let num = getInputTo()
+
+ 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header />
+      
+      <CurrencyForm  
+        currencies={ valute }
+        userChoice={ userChoise }
+        setUserChoice={ setUserChoice }
+        inputTo={ num }
+      />
+      
+      <Footer />
     </div>
   );
 }

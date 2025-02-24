@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #5a30f4;
+  padding: 1rem;
+  padding-inline: 1.5rem;
+}
+
+.headerLogo {
+  color: #fff;
+  font-size: 1.5rem;
+}
