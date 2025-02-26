@@ -20,14 +20,10 @@ function App() {
     const oldDate = new Date(rates.Date)
     const now = new Date()
     if (now - oldDate >= 86400000) {
-      console.log('time to get new JSON')
       getRates()
-    } else {
-      console.log("rates are fresh")
     }
   } else {
     getRates()
-    console.log("need to get rates")
   }
 
   const valute = []
